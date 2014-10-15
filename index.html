@@ -14,9 +14,17 @@
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit" name="login">Log in</button>
         </form>
+
+        <p>Your browser <span class="placeholder-support">supports</span> the HTML5 placeholder attribute.</p>
     </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="placeholder-fallback.min.js"></script>
+    <script>
+        var placeholderSupport = 'placeholder' in document.createElement('input');
+        if (!placeholderSupport) {
+            $('.placeholder-support').text('does not support').addClass('false');
+        }
+    </script>
 </body>
 </html>

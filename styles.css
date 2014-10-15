@@ -2,6 +2,7 @@ body {
     font-family: Open Sans, Verdana, sans-serif;
     background: #bdc3c7;
     font-size: 14px;
+    color: #34495e;
     margin: 0;
 }
 
@@ -30,6 +31,20 @@ body {
     padding: 50px 0;
     margin: 0 auto;
     width: 80%;
+}
+
+.container p {
+    text-align: center;
+    margin: 50px 0 0;
+}
+
+.container p .placeholder-support {
+    font-weight: bold;
+    color: #27ae60;
+}
+
+.container p .placeholder-support.false {
+    color: #c0392b;
 }
 
 .container form input,
