@@ -19,15 +19,14 @@
 
         <p>Your browser <span class="placeholder-support">supports</span> the HTML5 placeholder attribute.</p>
 
-        <a href="https://github.com/ihw-marketing/jquery-placeholder-fallback" target="_blank" class="github-badge">Fork me on GitHub</a>
+        <a href="https://github.com/ihw-marketing/jquery-placeholder-fallback" class="github-mark">Fork me on GitHub</a>
     </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="placeholder-fallback.min.js"></script>
+    <script src="jquery-placeholder-fallback.min.js"></script>
     <script>
-        var placeholderSupport = 'placeholder' in document.createElement('input');
-        if (!placeholderSupport) {
-            $('.placeholder-support').text('does not support').addClass('false');
+        if (document.createElement('input').placeholder === undefined) {
+            $('.placeholder-support').text('does not support').addClass('not-supported');
         }
     </script>
 </body>

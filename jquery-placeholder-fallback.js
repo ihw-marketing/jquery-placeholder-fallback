@@ -1,23 +1,20 @@
-/*! jQuery placeholder fallback | (c) 2014 IHW-Marketing GmbH | MIT license */
+/*! jQuery placeholder fallback | (c) 2014 IHW-Marketing GmbH | MIT License */
 
-// Detect native placeholder support
-var placeholderSupport = 'placeholder' in document.createElement('input');
-
-// Use fallback when we don't have native placeholder support
-if (!placeholderSupport) {
-    var placeholder = $('[placeholder]');
+// Use the fallback when we don't have native placeholder support
+if (document.createElement('input').placeholder === undefined) {
+    var placeholderElements = $('[placeholder]');
 
     // Bind the fallback functions to the input's with
-    // placeholder propibute
-    placeholder.blur(function() {
+    // placeholder attribute
+    placeholderElements.blur(function() {
         var input = $(this);
 
         // Only show the placeholder text when the user hasen't
         // entered his own input text
-        if (input.val() == '' || input.val() == input.prop('placeholder')) {
+        if (input.val() == '' || input.val() == input.attr('placeholder')) {
             // Password input's need to be cloned as text input's
             // They will be removed before submitting the form
-            if (input.prop('type') == 'password') {
+            if (input.attr('type') == 'password') {
                 var clonedInput;
                 try {
                     clonedInput = input.clone().prop('type', 'text');
@@ -36,7 +33,7 @@ if (!placeholderSupport) {
                 // Add placeholder and clone class and set the placeholder text
                 // as input value
                 clonedInput.addClass('placeholder clone');
-                clonedInput.val(input.prop('placeholder'));
+                clonedInput.val(input.attr('placeholder'));
 
                 // Insert the cloned input after the original one
                 clonedInput.insertAfter(input);
@@ -53,7 +50,7 @@ if (!placeholderSupport) {
             } else {
                 // Add placeholder class and set the placeholder text as input value
                 input.addClass('placeholder');
-                input.val(input.prop('placeholder'));
+                input.val(input.attr('placeholder'));
             }
         }
     }).focus(function() {
@@ -68,10 +65,10 @@ if (!placeholderSupport) {
 
     // Fire the blur event manuelly to get the placeholder fallback
     // when the page is loaded
-    placeholder.blur();
+    placeholderElements.blur();
 
     // Clear up some stuff before submitting the form
-    placeholder.parents('form').submit(function() {
+    placeholderElements.parents('form').submit(function() {
         $(this).find('[placeholder]').each(function() {
             var input = $(this);
 
@@ -82,7 +79,7 @@ if (!placeholderSupport) {
             }
 
             // Reset the value of the input if it's equal to placeholder text
-            if (input.val() == input.prop('placeholder')) {
+            if (input.val() == input.attr('placeholder')) {
                 input.val('');
             }
         });
