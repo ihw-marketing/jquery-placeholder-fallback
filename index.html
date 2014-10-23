@@ -5,7 +5,7 @@
     <title>jQuery placeholder fallback</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,700">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.min.css">
 </head>
 <body>
     <div class="container">
@@ -23,7 +23,8 @@
     </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="jquery-placeholder-fallback.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
+    <script src="js/jquery-placeholder-fallback.min.js"></script>
     <script>
         if (document.createElement('input').placeholder === undefined) {
             $('.placeholder-support').text('does not support').addClass('not-supported');
