@@ -1,4 +1,4 @@
-/*! jQuery placeholder fallback | (c) 2014 IHW-Marketing GmbH | MIT License */
+/*! jQuery placeholder fallback | (c) 2014-2015 IHW-Marketing GmbH | https://github.com/ihw-marketing/jquery-placeholder-fallback/blob/master/LICENSE */
 
 // Use the fallback when we don't have native placeholder support
 if (document.createElement('input').placeholder === undefined) {
@@ -11,7 +11,7 @@ if (document.createElement('input').placeholder === undefined) {
 
         // Only show the placeholder text when the user hasen't
         // entered his own input text
-        if (input.val() == '' || input.val() == input.attr('placeholder')) {
+        if (input.val() === '' || input.val() == input.attr('placeholder')) {
             // Password input's need to be cloned as text input's
             // They will be removed before submitting the form
             if (input.attr('type') == 'password') {
