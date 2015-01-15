@@ -1,27 +1,25 @@
 /*! jQuery placeholder fallback | (c) 2014-2015 IHW-Marketing GmbH | https://github.com/ihw-marketing/jquery-placeholder-fallback/blob/master/LICENSE */
 
-// Use the fallback when we don't have native placeholder support
+// Use the fallback when the browser has no native placeholder support
 if (document.createElement('input').placeholder === undefined) {
+    // Get all elements with a `placeholder` attribute
     var placeholderElements = $('[placeholder]');
 
-    // Bind the fallback functions to the input's with
-    // placeholder attribute
+    // Bind the fallback function to the placeholder elements
     placeholderElements.blur(function() {
         var input = $(this);
 
-        // Only show the placeholder text when the user hasen't
-        // entered his own input text
+        // Only show the placeholder text when the input is empty
         if (input.val() === '' || input.val() == input.attr('placeholder')) {
-            // Password input's need to be cloned as text input's
-            // They will be removed before submitting the form
+            // A password input needs to be cloned as text input
             if (input.attr('type') == 'password') {
                 var clonedInput;
+
                 try {
                     clonedInput = input.clone().prop('type', 'text');
                 } catch (error) {
-                    // IE doesn't allow overriding the input type so we need to
-                    // get the raw HTML code and change the input type before
-                    // creating a new input from the code
+                    // When the browser doesn't supports overriding the input type, it needs to
+                    // be changed in the raw HTML code before creating a cloned input
                     var html = input.clone()[0].outerHTML;
                     html = html.replace('type=password', 'type=text');
                     clonedInput = $(html);
@@ -30,10 +28,9 @@ if (document.createElement('input').placeholder === undefined) {
                     clonedInput.data(input.data());
                 }
 
-                // Add placeholder and clone class and set the placeholder text
-                // as input value
-                clonedInput.addClass('placeholder clone');
-                clonedInput.val(input.attr('placeholder'));
+                // Add the `placeholder` and `clone` class to the input and set the
+                // placeholder text as input value
+                clonedInput.addClass('placeholder clone').val(input.attr('placeholder'));
 
                 // Insert the cloned input after the original one
                 clonedInput.insertAfter(input);
@@ -48,9 +45,9 @@ if (document.createElement('input').placeholder === undefined) {
                     $(this).remove();
                 });
             } else {
-                // Add placeholder class and set the placeholder text as input value
-                input.addClass('placeholder');
-                input.val(input.attr('placeholder'));
+                // Add the `placeholder` class  to the input and set the placeholder text
+                // as input value
+                input.addClass('placeholder').val(input.attr('placeholder'));
             }
         }
     }).focus(function() {
@@ -63,11 +60,10 @@ if (document.createElement('input').placeholder === undefined) {
         }
     });
 
-    // Fire the blur event manuelly to get the placeholder fallback
-    // when the page is loaded
+    // Fire the blur event manuelly to get the placeholder fallback on load
     placeholderElements.blur();
 
-    // Clear up some stuff before submitting the form
+    // Clear up the input elements before submitting the form
     placeholderElements.parents('form').submit(function() {
         $(this).find('[placeholder]').each(function() {
             var input = $(this);
