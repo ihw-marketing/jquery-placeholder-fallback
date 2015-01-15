@@ -18,8 +18,12 @@
     "url": "https://github.com/ihw-marketing/jquery-placeholder-fallback/blob/master/LICENSE"
   },
   "name": "jquery-placeholder-fallback",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ihw-marketing/jquery-placeholder-fallback"
+  },
   "scripts": {
     "build": "gulp build"
   },
-  "version": "1.1.0"
+  "version": "1.1.1"
 }
