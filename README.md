@@ -19,7 +19,7 @@ Just insert the script tags which link to [jQuery][jquery] and the [jquery-place
 </body>
 ```
 
-A working demo can be found [here][demo].
+Check out the **[DEMO][demo]**.
 
 ## Credits
 

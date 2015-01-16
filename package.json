@@ -1,5 +1,6 @@
 {
   "author": "IHW-Marketing GmbH",
+  "description": "A jQuery fallback for the HTML5 placeholder attribute",
   "devDependencies": {
     "del": "^1.1.1",
     "gulp": "^3.8.10",
@@ -23,7 +24,8 @@
     "url": "https://github.com/ihw-marketing/jquery-placeholder-fallback"
   },
   "scripts": {
-    "build": "gulp build"
+    "build": "gulp build",
+    "test": "gulp build"
   },
-  "version": "1.1.2"
+  "version": "1.1.3"
 }

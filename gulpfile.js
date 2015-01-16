@@ -6,12 +6,12 @@ var gulp = require('gulp'),
 
 // Clean up the `dist` directory
 gulp.task('clean', function() {
-    del('dist/*');
+    del('dist/**');
 });
 
 // Copy over the JavaScript files and minify them
 gulp.task('copy:js', function() {
-    return gulp.src('src/*.js')
+    return gulp.src('src/**/*.js')
         .pipe(plugins.jscs())
         .pipe(plugins.jshint())
         .pipe(plugins.jshint.reporter('jshint-stylish'))
