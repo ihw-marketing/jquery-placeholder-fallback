@@ -42,6 +42,7 @@ body {
     box-sizing: border-box;
     border: 1px solid #868686;
     -webkit-appearance: none;
+    line-height: inherit;
     background: #ffffff;
     margin: 0 auto 24px;
     border-radius: 4px;
@@ -91,7 +92,7 @@ body {
     transition: border 0.4s ease-in;
     border: 2px solid transparent;
     background-repeat: no-repeat;
-    background-position: 10px;
+    background-position: 12px;
     text-decoration: none;
     background-size: 32px;
     border-radius: 4px;
