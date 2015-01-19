@@ -1,4 +1,4 @@
-/*! jQuery placeholder fallback | (c) 2014-2015 IHW-Marketing GmbH | https://github.com/ihw-marketing/jquery-placeholder-fallback/blob/master/LICENSE */
+/*! jQuery placeholder fallback v1.1.4 | (c) 2014-2015 IHW-Marketing GmbH | https://github.com/ihw-marketing/jquery-placeholder-fallback/blob/master/LICENSE */
 
 // Use the fallback when the browser has no native placeholder support
 if (document.createElement('input').placeholder === undefined) {
