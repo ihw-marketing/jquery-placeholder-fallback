@@ -1,5 +1,5 @@
-var gulp = require('gulp'),
-    del = require('del'),
+var del = require('del'),
+    gulp = require('gulp'),
     plugins = require('gulp-load-plugins')();
 
 
@@ -9,7 +9,7 @@ gulp.task('clean', function(callback) {
 });
 
 // Copy over the JavaScript files and minify them
-gulp.task('copy:js', ['clean'], function() {
+gulp.task('build', ['clean'], function() {
     return gulp.src('src/**/*.js')
         .pipe(plugins.jscs())
         .pipe(plugins.jshint())
@@ -21,9 +21,6 @@ gulp.task('copy:js', ['clean'], function() {
         .pipe(plugins.insert.append('\n'))
         .pipe(gulp.dest('dist'));
 });
-
-// Build task
-gulp.task('build', ['copy:js']);
 
 // The default task (called when you run `gulp` from CLI)
 gulp.task('default', ['build']);
