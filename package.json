@@ -1,6 +1,6 @@
 {
   "author": "IHW-Marketing GmbH",
-  "description": "A demo for the jQuery placeholder fallback",
+  "description": "jQuery placeholder fallback Demo",
   "dependencies": {
     "jquery": "1.11.2"
   },
@@ -22,12 +22,12 @@
   "homepage": "http://ihw-marketing.github.io/jquery-placeholder-fallback",
   "license": {
     "type": "MIT",
-    "url": "https://github.com/ihw-marketing/jquery-placeholder-fallback/blob/master/LICENSE"
+    "url": "https://github.com/ihw-marketing/jquery-placeholder-fallback/blob/website/README.md"
   },
-  "name": "jquery-placeholder-fallback-website",
+  "name": "jquery-placeholder-fallback-demo",
   "repository": {
     "type": "git",
     "url": "https://github.com/ihw-marketing/jquery-placeholder-fallback/tree/website"
   },
-  "version": "1.1.3"
+  "version": "1.1.4"
 }
