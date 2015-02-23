@@ -1,1 +1,1 @@
-# A demo for the jQuery placeholder fallback
+# jQuery placeholder fallback Demo

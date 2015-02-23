@@ -1,16 +1,19 @@
-var gulp = require('gulp'),
-    del = require('del'),
+var del = require('del'),
+    gulp = require('gulp'),
+    eventStream = require('event-stream'),
     plugins = require('gulp-load-plugins')();
 
 
+// Update the dependencies in the `src` folder
+gulp.task('update-dependencies', function(callback) {
+    gulp.src('node_modules/jquery/dist/jquery.js')
+        .pipe(gulp.dest('src/js'))
+        .on('end', callback);
+});
+
 // Clean up the `dist` directory
-gulp.task('clean', function(callback) {
-    del([
-        'dist/*',
-        '!dist/js',
-        'dist/js/*',
-        '!dist/js/jquery.min.js'
-    ], { dot: true }, callback);
+gulp.task('clean', ['update-dependencies'], function(callback) {
+    del('dist/*', { dot: true }, callback);
 });
 
 // Copy over the HTML files and update the dependencie names
@@ -34,19 +37,24 @@ gulp.task('copy:css', ['clean'], function() {
 
 // Copy over the JavaScript files and minify them
 gulp.task('copy:js', ['clean'], function() {
-    return gulp.src([
-            'src/**/*.js',
-            '!src/js/jquery.js'
-        ])
-        .pipe(plugins.jscs())
-        .pipe(plugins.jshint())
-        .pipe(plugins.jshint.reporter('jshint-stylish'))
-        .pipe(plugins.uglify({ preserveComments: 'some' }))
-        .pipe(plugins.rename(function(path) {
-            path.basename += '.min';
-        }))
-        .pipe(plugins.insert.append('\n'))
-        .pipe(gulp.dest('dist'));
+    eventStream.concat(
+        gulp.src('node_modules/jquery/dist/jquery.min.js')
+            .pipe(plugins.replace('//# sourceMappingURL=jquery.min.map', ''))
+            .pipe(gulp.dest('dist/js')),
+        gulp.src([
+                'src/**/*.js',
+                '!src/js/jquery.js'
+            ])
+            .pipe(plugins.jscs())
+            .pipe(plugins.jshint())
+            .pipe(plugins.jshint.reporter('jshint-stylish'))
+            .pipe(plugins.uglify({ preserveComments: 'some' }))
+            .pipe(plugins.rename(function(path) {
+                path.basename += '.min';
+            }))
+            .pipe(plugins.insert.append('\n'))
+            .pipe(gulp.dest('dist'))
+    );
 });
 
 // Copy over all other files
@@ -54,7 +62,6 @@ gulp.task('copy:files', ['copy:html', 'copy:css', 'copy:js'], function() {
     return gulp.src([
             'src/**',
             '!src/**/*.css',
-            '!src/**/*.html',
             '!src/**/*.js'
         ], { dot: true })
         .pipe(plugins.conflict('dist', { skipAll: true }))
